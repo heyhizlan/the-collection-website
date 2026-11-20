@@ -28,6 +28,10 @@ Client site built by Hizlan (HeyHizlan Designs). Client came through Dean Wong.
   - Hero: Three.js (unpkg, v0.160) low-poly isometric building. Upper floor La Maison, ground floor La Galerie + L'Hôtel. Hover lifts a room + orange outline, click scrolls to its card. Camera parallax on mouse.
   - Sections: Rooms, Use cases, Availability (calendar + WhatsApp prefill), FAQ, footer.
   - Availability: `BOOKED` array in the second `<script>` tag. Dean edits dates there (YYYY-MM-DD).
+  - Three.js is vendored at assets/vendor/three.module.js (no CDN dependency).
+  - Scroll reveals: sections with `data-anim` get `.in` on enter, lose it on exit, so animations replay. Respects prefers-reduced-motion.
+  - Use cases (02): pinned scroll sequence on desktop. Photos read from assets/uses/{photography,film,popups,events}.jpg (fall back to colour blocks). Each links to Instagram; swap href for story highlight links.
+  - Footer email capture: set `FORM_ENDPOINT` (Formspree) in the script. Empty = sends the email to WhatsApp.
 - Fonts: Inter Tight + Instrument Serif (Google Fonts).
 - Colours: bg #ECEAE6, ink #141414, orange #F2542D.
 

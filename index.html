@@ -40,7 +40,6 @@ nav .links a:hover::after,.brand:hover::after{transform:scaleX(1);transform-orig
 .in .rule{transform:none}
 .tag p{color:var(--mute);font-size:14px;line-height:1.6;max-width:330px}
 .hero .tag.fade{transition-delay:.3s}
-.side{position:absolute;right:0;top:40px;writing-mode:vertical-rl;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;border-left:2px solid var(--ink);padding-left:8px}
 #scene{position:relative;height:100%;min-height:620px;overflow:hidden}
 #scene canvas{display:block;cursor:pointer}
 .label{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;font-weight:600;opacity:0;transition:opacity .2s;white-space:nowrap}
@@ -101,8 +100,6 @@ section{padding:120px 0;border-top:1.5px solid var(--line)}
 .uph::before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 60%,rgba(0,0,0,.55))}
 .uph span i{font-style:normal}
 .uph span{z-index:1;position:absolute;left:12px;bottom:12px;right:12px;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#fff}
-.uph::after{content:"";position:absolute;inset:0;background:var(--or);opacity:0;transition:opacity .3s}
-.uph:hover::after{opacity:.25}
 .u b{font-size:40px;font-weight:800;letter-spacing:-.04em;display:block;margin-top:18px;transition:color .3s}
 .u.on b{color:var(--or)}
 .u span.t{font-size:15px;font-weight:600;display:block;margin:6px 0 8px}
@@ -134,6 +131,7 @@ section{padding:120px 0;border-top:1.5px solid var(--line)}
 .d.taken{color:#bbb;text-decoration:line-through}
 .d.sel{background:var(--or);color:#fff;border-color:var(--or)}
 .legend{display:flex;gap:20px;font-size:12px;color:var(--mute);margin-top:18px}
+.legend .booked-label{text-decoration:line-through}
 .legend i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:middle;border:1px solid #cfcac2;background:#fff}
 .wa{display:flex;justify-content:space-between;align-items:center;margin-top:24px;background:var(--ink);color:#fff;padding:20px 24px;font-weight:600;font-size:15px;transition:background .25s}
 .wa:hover{background:var(--or)}
@@ -178,12 +176,13 @@ footer .big .mask:nth-child(2)>span{transition-delay:.12s;font-family:'Instrumen
 .lead button:hover{background:var(--or);color:#fff}
 .lead small{display:block;margin-top:12px;font-size:12px;color:#888;min-height:1em}
 footer .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:96px;padding-top:24px;border-top:1px solid #333;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#999}
+footer .socials{display:flex;gap:24px;align-items:center;margin-left:auto;justify-content:flex-end}
 footer .row a:hover{color:var(--or)}
 
 @media(max-width:900px){
  .hero,.book,.faqw,.fgrid{grid-template-columns:1fr}.spaces{grid-template-columns:1fr}
  .sp{border-right:0;border-bottom:1.5px solid var(--line)}.sp:last-child{border-bottom:0}
- nav .links{display:none}.side{display:none}
+ nav .links{display:none}
  /* hero on mobile: headline > building > tagline > buttons */
  .hero{display:flex;flex-direction:column;min-height:0;padding-bottom:48px}
  .hero>div:first-child{display:contents}
@@ -223,7 +222,6 @@ footer .row a:hover{color:var(--or)}
   <div class="cta fade"><a href="#spaces">See the rooms</a><a class="go" href="#book">Check a date &nbsp;→</a></div>
  </div>
  <div id="scene"><div class="label" id="lbl"></div></div>
- <div class="side">Curated spaces · Est. Ara Damansara</div>
 </header>
 </div>
 
@@ -256,7 +254,7 @@ footer .row a:hover{color:var(--or)}
 
 <section id="book" data-anim><div class="wrap">
  <div class="eyebrow fade">03 / Availability</div>
- <h2 class="h"><span class="mask"><span>Find a free day.</span></span><span class="mask"><span><em>Message us.</em> Done.</span></span></h2>
+ <h2 class="h"><span class="mask"><span>Find a free day.</span></span><span class="mask"><span><em>Message us.</em></span></span></h2>
  <div class="book">
   <div>
    <ol class="steps"><li><b>01</b>Choose a room</li><li><b>02</b>Tap an open date</li><li><b>03</b>WhatsApp opens with your request ready</li><li><b>04</b>We confirm time and rate with you directly</li></ol>
@@ -265,7 +263,7 @@ footer .row a:hover{color:var(--or)}
   <div class="cal fade">
    <div class="calh"><button id="prev" aria-label="Previous month">←</button><span id="mon"></span><button id="next" aria-label="Next month">→</button></div>
    <div class="grid" id="grid"></div>
-   <div class="legend"><span><i></i>Open</span><span><i style="background:none;border:0;text-decoration:line-through">–</i>Booked</span><span><i style="background:var(--or);border-color:var(--or)"></i>Your pick</span></div>
+   <div class="legend"><span><i></i>Open</span><span class="booked-label">Booked</span><span><i style="background:var(--or);border-color:var(--or)"></i>Your pick</span></div>
    <a class="wa off" id="wa" target="_blank" rel="noopener"><span id="watxt">Pick a date first</span><span>→</span></a>
   </div>
  </div>
@@ -298,7 +296,7 @@ footer .row a:hover{color:var(--or)}
    <small id="leadmsg"></small>
   </div>
  </div>
- <div class="row"><span>The Collection Studios · Ara Damansara</span><a href="https://wa.me/60126576099" target="_blank" rel="noopener">WhatsApp ↗︎</a><a href="https://instagram.com/the_collection_studios" target="_blank" rel="noopener">Instagram ↗︎</a></div>
+ <div class="row"><span>The Collection Studios · Ara Damansara</span><div class="socials"><a href="https://wa.me/60126576099" target="_blank" rel="noopener">WhatsApp ↗︎</a><a href="https://instagram.com/the_collection_studios" target="_blank" rel="noopener">Instagram ↗︎</a></div></div>
 </div></footer>
 
 <script type="importmap">{"imports":{"three":"./assets/vendor/three.module.js","three/addons/":"./assets/vendor/addons/"}}</script>

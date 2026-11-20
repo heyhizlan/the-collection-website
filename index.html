@@ -89,7 +89,8 @@ section{padding:120px 0;border-top:1.5px solid var(--line)}
 .u.on{opacity:1;transform:none}
 .u .uph{display:block;position:relative;aspect-ratio:4/5;background:var(--c,#d6d2cb) var(--img,none) center/cover;overflow:hidden;clip-path:inset(0 0 100% 0);transition:clip-path .9s var(--ease)}
 .u.on .uph{clip-path:inset(0 0 0 0)}
-.uph span{position:absolute;left:12px;bottom:12px;right:12px;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#fff}
+.uph::before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 60%,rgba(0,0,0,.55))}
+.uph span{z-index:1;position:absolute;left:12px;bottom:12px;right:12px;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#fff}
 .uph::after{content:"";position:absolute;inset:0;background:var(--or);opacity:0;transition:opacity .3s}
 .uph:hover::after{opacity:.25}
 .u b{font-size:40px;font-weight:800;letter-spacing:-.04em;display:block;margin-top:18px;transition:color .3s}

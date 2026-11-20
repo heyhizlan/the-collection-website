@@ -49,6 +49,6 @@ Client site built by Hizlan (HeyHizlan Designs). Client came through Dean Wong.
 - Honest feedback over reassurance.
 
 ## Deploy + backups
-- Push straight to `main` only (Hizlan's instruction). No side branches.
-- Before every push, tag the current live `main` as `backup-YYYY-MM-DD-<what-changes-next>` and push the tag.
-- To roll back: `git checkout main && git reset --hard <tag> && git push --force-with-lease origin main` (or `git revert` the commits).
+- Push straight to `main` only (Hizlan's instruction). No working side branches.
+- Before every push, snapshot the current live `main` as a branch `backup/YYYY-MM-DD-<what-changes-next>` (tags can't be pushed from the cloud sandbox). Backups are frozen, never deployed.
+- To roll back: GitHub > Branches > pick the backup, or `git checkout main && git reset --hard origin/backup/<name> && git push --force-with-lease origin main`.

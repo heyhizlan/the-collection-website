@@ -19,7 +19,8 @@ nav .links{display:flex;gap:40px}
 .rule{width:48px;height:2px;background:var(--or);margin:22px 0}
 .tag p{color:var(--mute);font-size:14px;line-height:1.6;max-width:330px}
 .side{position:absolute;right:0;top:40px;writing-mode:vertical-rl;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;border-left:2px solid var(--ink);padding-left:8px}
-#scene{position:relative;height:100%;min-height:620px}
+.hero>*{min-width:0}
+#scene{position:relative;height:100%;min-height:620px;overflow:hidden}
 #scene canvas{display:block;cursor:pointer}
 .label{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;font-weight:600;opacity:0;transition:opacity .2s;white-space:nowrap}
 .cta{position:absolute;left:0;bottom:48px;display:flex;gap:0;border:1.5px solid var(--line)}
@@ -208,7 +209,7 @@ const pot=cyl(.18,.35,0xb5653a,3.8,.2,1.8,mai);const leaf=new THREE.Mesh(new THR
 box(3.2,.5,1.4,0xF2542D,3.2,-.5,3.9);
 // interaction
 const ray=new THREE.Raycaster(),mouse=new THREE.Vector2(-9,-9);let hov=-1,tgt={x:0,y:0};
-function size(){const w=el.clientWidth,h=el.clientHeight,a=w/h,f=6.2;cam.left=-f*a;cam.right=f*a;cam.top=f;cam.bottom=-f;cam.updateProjectionMatrix();R.setSize(w,h)}
+function size(){const w=el.clientWidth,h=el.clientHeight,a=w/h,f=Math.max(6.2,7.4/a);cam.left=-f*a;cam.right=f*a;cam.top=f;cam.bottom=-f;cam.updateProjectionMatrix();R.setSize(w,h)}
 size();addEventListener('resize',size);
 el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();mouse.x=(e.clientX-r.left)/r.width*2-1;mouse.y=-(e.clientY-r.top)/r.height*2+1;tgt.x=mouse.x;tgt.y=mouse.y;lbl.style.left=(e.clientX-r.left+16)+'px';lbl.style.top=(e.clientY-r.top+16)+'px'});
 el.addEventListener('pointerleave',()=>{mouse.set(-9,-9);tgt={x:0,y:0}});

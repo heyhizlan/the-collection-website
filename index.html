@@ -73,6 +73,15 @@ section{padding:120px 0;border-top:1.5px solid var(--line)}
 .sp li{padding:8px 0;border-top:1px solid currentColor;opacity:.9}
 .phw{overflow:hidden;margin-bottom:24px}.phw .ph{margin:0}
 
+/* Photos: monochrome at rest; colour on hover, focus and touch-screen reveal. */
+.sp .room-photo{background-image:url('assets/rooms/studio-interiors.png');background-size:300% 100%;background-position:var(--room-position) center}
+.sp .ph,.u .uph{filter:grayscale(1);transition:filter .7s var(--ease),transform 1.6s var(--ease),clip-path .9s var(--ease)}
+.sp:hover .ph,.phw:focus-visible .ph,.uph:hover,.uph:focus-visible{filter:grayscale(0)}
+.phw:focus-visible,.uph:focus-visible{outline:3px solid var(--or);outline-offset:4px}
+@media(hover:none),(pointer:coarse){
+ .phw.photo-in-view .ph,.u .uph.photo-in-view{filter:grayscale(0)}
+}
+
 /* 02 USES: pinned, scroll drives 01 > 02 > 03 > 04 */
 #uses{padding:0}
 .pin{height:360vh;position:relative}
@@ -222,11 +231,11 @@ footer .row a:hover{color:var(--or)}
  <div class="eyebrow fade">01 / The rooms</div>
  <h2 class="h"><span class="mask"><span>Pick a room.</span></span><span class="mask"><span><em>Skip the set build.</em></span></span></h2>
  <div class="spaces">
-  <div class="sp" data-room="0"><div class="phw"><div class="ph">Photo: fireplace + armchair</div></div><div class="k">01 · LA MAISON</div><h3>La Maison</h3><p>A lived-in home with a marble fireplace, a black leather lounge chair and afternoon sun through tall windows.</p><ul><li>Lifestyle and portraits</li><li>Slow brand films</li><li>Interviews</li></ul></div>
-  <div class="sp" data-room="1"><div class="phw"><div class="ph">Photo: red wall + frames</div></div><div class="k">02 · LA GALERIE</div><h3>La Galerie</h3><p>Oxblood walls, gilt frames, plaster busts and a velvet rope. A private museum you are allowed to touch.</p><ul><li>Editorial and fashion</li><li>Art pop-ups</li><li>Launch nights</li></ul></div>
-  <div class="sp" data-room="2"><div class="phw"><div class="ph">Photo: blue carpet lounge</div></div><div class="k">03 · L'HÔTEL</div><h3>L'Hôtel</h3><p>A red-ceilinged corridor, a cobalt carpet lounge and a tatami room. Somewhere between Tokyo and a 70s grand hotel.</p><ul><li>Music videos</li><li>Campaign shoots</li><li>Short film scenes</li></ul></div>
+  <div class="sp" data-room="0"><div class="phw" tabindex="0" role="img" aria-label="Illustrative room concept: sunlit home interior with a marble fireplace and black leather lounge chair"><div class="ph room-photo" style="--room-position:0%"></div></div><div class="k">01 · LA MAISON</div><h3>La Maison</h3><p>A lived-in home with a marble fireplace, a black leather lounge chair and afternoon sun through tall windows.</p><ul><li>Lifestyle and portraits</li><li>Slow brand films</li><li>Interviews</li></ul></div>
+  <div class="sp" data-room="1"><div class="phw" tabindex="0" role="img" aria-label="Illustrative room concept: oxblood gallery with gilt-framed paintings and a plaster bust"><div class="ph room-photo" style="--room-position:50%"></div></div><div class="k">02 · LA GALERIE</div><h3>La Galerie</h3><p>Oxblood walls, gilt frames, plaster busts and a velvet rope. A private museum you are allowed to touch.</p><ul><li>Editorial and fashion</li><li>Art pop-ups</li><li>Launch nights</li></ul></div>
+  <div class="sp" data-room="2"><div class="phw" tabindex="0" role="img" aria-label="Illustrative room concept: retro hotel lounge with cobalt carpet, red ceiling and cream chairs"><div class="ph room-photo" style="--room-position:100%"></div></div><div class="k">03 · L'HÔTEL</div><h3>L'Hôtel</h3><p>A red-ceilinged corridor, a cobalt carpet lounge and a tatami room. Somewhere between Tokyo and a 70s grand hotel.</p><ul><li>Music videos</li><li>Campaign shoots</li><li>Short film scenes</li></ul></div>
  </div>
- <p class="fade" style="margin-top:20px;font-size:13px;color:var(--mute)">The rooms get restyled through the year. What you see on Instagram is what's up now.</p>
+ <p class="fade" style="margin-top:20px;font-size:13px;color:var(--mute)">Room images are illustrative concepts. The rooms get restyled through the year. See Instagram for the current sets.</p>
 </div></section>
 
 <!-- 02 / USES. Each photo links to a story. Swap --img with a file in assets/uses/ and href with the Instagram highlight link. -->
@@ -314,7 +323,13 @@ function usesScroll(){
 addEventListener('scroll',usesScroll,{passive:true});addEventListener('resize',usesScroll);usesScroll();
 const uio=new IntersectionObserver(es=>es.forEach(e=>{if(!desk.matches)e.target.classList.toggle('on',e.isIntersecting)}),{threshold:.25});
 us.forEach(u=>uio.observe(u));
-// hide the photo label when a real image file loads
+// Touch screens have no hover: reveal colour when the photo is centred in view.
+const touchPhotos=matchMedia('(hover:none), (pointer:coarse)');
+const photoObserver=new IntersectionObserver(entries=>entries.forEach(({target,isIntersecting})=>{
+ target.classList.toggle('photo-in-view',isIntersecting && touchPhotos.matches);
+}),{threshold:0,rootMargin:'-20% 0px -20% 0px'});
+document.querySelectorAll('.phw,.uph').forEach(photo=>photoObserver.observe(photo));
+// Fall back to a solid background if an existing use-case image is unavailable.
 us.forEach(u=>{const a=u.querySelector('.uph'),m=a.style.getPropertyValue('--img').match(/url\((.*)\)/);if(!m)return;const im=new Image();im.onerror=()=>a.style.setProperty('--img','none');im.src=m[1]});
 
 // FAQ accordion

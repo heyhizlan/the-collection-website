@@ -36,7 +36,7 @@ Client site built by Hizlan (HeyHizlan Designs). Client came through Dean Wong.
 - Colours: bg #ECEAE6, ink #141414, orange #F2542D.
 
 ## Known gaps / next steps
-1. Room photos are grey placeholders. Swap in real Instagram shots (put files in assets/rooms/).
+1. Room cards use generated illustrative interiors from assets/rooms/studio-interiors.png (three equal panels). Replace with actual studio photography when available. Images start grayscale and reveal colour on hover/focus, or as they enter the central viewport on touch screens.
 2. Booked dates are dummy data.
 3. No pricing yet. Ask Dean.
 4. 3D hero is blockier than the cozy reference. Agreed plan: model the building in Spline or Blender (GLB, baked lighting), then load it in Three.js and keep the hover/click behaviour. Current code is the placeholder.

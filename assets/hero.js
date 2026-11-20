@@ -224,12 +224,24 @@ let introStart=performance.now(),heroVisible=true;
 new IntersectionObserver(([e])=>{if(e.isIntersecting&&!heroVisible)introStart=performance.now();heroVisible=e.isIntersecting},{threshold:0}).observe(el);
 const ease=x=>1-Math.pow(1-Math.min(Math.max(x,0),1),3);
 const ray=new THREE.Raycaster(),mouse=new THREE.Vector2(-9,-9);let hov=-1,tgt={x:0,y:0};
-function size(){const w=el.clientWidth,h=el.clientHeight,a=w/h,f=Math.max(6.9,8.2/a);cam.left=-f*a;cam.right=f*a;cam.top=f;cam.bottom=-f;cam.updateProjectionMatrix();R.setSize(w,h)}
-size();addEventListener('resize',size);
-el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();mouse.x=(e.clientX-r.left)/r.width*2-1;mouse.y=-(e.clientY-r.top)/r.height*2+1;tgt.x=mouse.x;tgt.y=mouse.y;lbl.style.left=(e.clientX-r.left+16)+'px';lbl.style.top=(e.clientY-r.top+16)+'px'});
-el.addEventListener('pointerleave',()=>{mouse.set(-9,-9);tgt={x:0,y:0}});
+// Fit the building to the stage: desktop keeps its framing, narrow stages zoom to fill the width.
+let lastW=0,lastH=0;
+function size(){const w=el.clientWidth,h=el.clientHeight;if(!w||!h||(w===lastW&&h===lastH))return;lastW=w;lastH=h;
+ const a=w/h,f=w<760?Math.max(6.0,7.3/a):Math.max(6.9,8.2/a);
+ cam.left=-f*a;cam.right=f*a;cam.top=f;cam.bottom=-f;cam.updateProjectionMatrix();R.setSize(w,h)}
+size();new ResizeObserver(size).observe(el);
+el.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const r=el.getBoundingClientRect();mouse.x=(e.clientX-r.left)/r.width*2-1;mouse.y=-(e.clientY-r.top)/r.height*2+1;tgt.x=mouse.x;tgt.y=mouse.y;lbl.style.left=(e.clientX-r.left+16)+'px';lbl.style.top=(e.clientY-r.top+16)+'px'});
+el.addEventListener('pointerleave',e=>{if(e.pointerType!=='mouse')return;mouse.set(-9,-9);tgt={x:0,y:0}});
 const order={"La Maison":0,"La Galerie":1,"L'Hôtel":2};
-el.addEventListener('click',()=>{if(hov<0)return;const i=order[rooms[hov].name];document.querySelectorAll('.sp').forEach((s,j)=>s.classList.toggle('on',j===i));document.getElementById('spaces').scrollIntoView({behavior:'smooth'})});
+function go(ri){const i=order[rooms[ri].name];document.querySelectorAll('.sp').forEach((s,j)=>s.classList.toggle('on',j===i));document.getElementById('spaces').scrollIntoView({behavior:'smooth'})}
+el.addEventListener('click',e=>{if(e.pointerType&&e.pointerType!=='mouse')return;if(hov>-1)go(hov)});
+// Touch: a tap (not a scroll) highlights the room, then goes to its card.
+let down=null,tapped=-1;
+el.addEventListener('pointerdown',e=>{down={x:e.clientX,y:e.clientY}});
+el.addEventListener('pointerup',e=>{if(e.pointerType==='mouse'||!down||Math.hypot(e.clientX-down.x,e.clientY-down.y)>10)return;
+ const r=el.getBoundingClientRect();ray.setFromCamera(new THREE.Vector2((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1),cam);
+ const hit=ray.intersectObjects(rooms.map(q=>q.g),true)[0],i=hit?owner(hit.object):-1;if(i<0)return;
+ tapped=i;lbl.style.left=(e.clientX-r.left-40)+'px';lbl.style.top=(e.clientY-r.top-48)+'px';setTimeout(()=>{go(i);tapped=-1},450)});
 rooms.forEach(r=>{r.wm.emissive=new THREE.Color(0xF2542D);r.wm.emissiveIntensity=0});
 function owner(o){while(o){const i=rooms.findIndex(r=>r.g===o);if(i>-1)return i;o=o.parent}return -1}
 const fireLight=rooms[2].g.children.find(c=>c.isPointLight&&c.color.getHex()===0xff8a3d);
@@ -239,7 +251,7 @@ const fireLight=rooms[2].g.children.find(c=>c.isPointLight&&c.color.getHex()===0
  world.rotation.y=-.5*(1-e0);world.position.y=-1.5*(1-e0);
  cam.position.set(base.x+tgt.x*2.2,base.y+tgt.y*1.2,base.z-tgt.x*2.2);cam.lookAt(look);
  if(fireLight)fireLight.intensity=2.8+Math.sin(t*9)*.35+Math.sin(t*5.3)*.25;
- ray.setFromCamera(mouse,cam);const hit=ray.intersectObjects(rooms.map(r=>r.g),true)[0];hov=hit?owner(hit.object):-1;
+ ray.setFromCamera(mouse,cam);const hit=ray.intersectObjects(rooms.map(r=>r.g),true)[0];hov=hit?owner(hit.object):-1;if(tapped>-1)hov=tapped;
  rooms.forEach((r,i)=>{const on=i===hov;
   r.gm.opacity+=((on?1:0)-r.gm.opacity)*.15;r.wm.emissiveIntensity+=((on?.12:0)-r.wm.emissiveIntensity)*.15;
   const drop=(1-ease((it-.15-i*.18)/.9))*6,want=r.y+(on?.15:0)+drop;

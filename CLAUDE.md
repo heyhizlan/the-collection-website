@@ -25,7 +25,7 @@ Client site built by Hizlan (HeyHizlan Designs). Client came through Dean Wong.
 
 ## Current build
 - `index.html`: single self-contained page.
-  - Hero: Three.js (unpkg, v0.160) low-poly isometric building. Upper floor La Maison, ground floor La Galerie + L'Hôtel. Hover lifts a room + orange outline, click scrolls to its card. Camera parallax on mouse.
+  - Hero: Three.js (v0.160, vendored) isometric building. Upper floor La Maison, ground floor La Galerie + L'Hôtel. Hover lifts a room + orange outline, click scrolls to its card. Camera parallax on mouse.
   - Sections: Rooms, Use cases, Availability (calendar + WhatsApp prefill), FAQ, footer.
   - Availability: `BOOKED` array in the second `<script>` tag. Dean edits dates there (YYYY-MM-DD).
   - Hero scene lives in assets/hero.js (rounded furniture, window light, canvas textures). Three.js + addons vendored in assets/vendor/ (no CDN).
@@ -47,3 +47,8 @@ Client site built by Hizlan (HeyHizlan Designs). Client came through Dean Wong.
 - Short, direct sentences. No corporate language, no em dashes.
 - Explain strategy before execution.
 - Honest feedback over reassurance.
+
+## Deploy + backups
+- Push straight to `main` only (Hizlan's instruction). No side branches.
+- Before every push, tag the current live `main` as `backup-YYYY-MM-DD-<what-changes-next>` and push the tag.
+- To roll back: `git checkout main && git reset --hard <tag> && git push --force-with-lease origin main` (or `git revert` the commits).

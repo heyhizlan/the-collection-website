@@ -90,6 +90,7 @@ section{padding:120px 0;border-top:1.5px solid var(--line)}
 .u .uph{display:block;position:relative;aspect-ratio:4/5;background:var(--c,#d6d2cb) var(--img,none) center/cover;overflow:hidden;clip-path:inset(0 0 100% 0);transition:clip-path .9s var(--ease)}
 .u.on .uph{clip-path:inset(0 0 0 0)}
 .uph::before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 60%,rgba(0,0,0,.55))}
+.uph span i{font-style:normal}
 .uph span{z-index:1;position:absolute;left:12px;bottom:12px;right:12px;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#fff}
 .uph::after{content:"";position:absolute;inset:0;background:var(--or);opacity:0;transition:opacity .3s}
 .uph:hover::after{opacity:.25}
@@ -105,14 +106,14 @@ section{padding:120px 0;border-top:1.5px solid var(--line)}
 .steps li:nth-child(2){transition-delay:.1s}.steps li:nth-child(3){transition-delay:.2s}.steps li:nth-child(4){transition-delay:.3s}
 .steps li b{color:var(--or)}
 .picker{display:flex;border:1.5px solid var(--line);margin:28px 0 0}
-.picker button{flex:1;padding:14px;background:none;border:0;border-right:1.5px solid var(--line);font:600 13px 'Inter Tight';cursor:pointer;transition:background .2s,color .2s}
-.picker button:hover{background:#ddd9d2}
+.picker button{flex:1;padding:14px;background:none;border:0;border-right:1.5px solid var(--line);font:600 13px 'Inter Tight';color:var(--ink);-webkit-appearance:none;appearance:none;border-radius:0;cursor:pointer;transition:background .2s,color .2s}
+.picker button:hover{background:var(--or);color:#fff}
 .picker button:last-child{border-right:0}
 .picker button.on{background:var(--ink);color:#fff}
 .cal{border:1.5px solid var(--line);padding:28px;background:#F5F3F0}
 .calh{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;font-weight:700}
-.calh button{background:none;border:1.5px solid var(--line);width:36px;height:36px;cursor:pointer;font-size:16px;transition:background .2s,color .2s}
-.calh button:hover{background:var(--ink);color:#fff}
+.calh button{background:none;border:1.5px solid var(--line);width:36px;height:36px;cursor:pointer;font-size:16px;color:var(--ink);-webkit-appearance:none;appearance:none;border-radius:0;transition:background .2s,color .2s,border-color .2s}
+.calh button:hover{background:var(--or);border-color:var(--or);color:#fff}
 .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
 .grid .dn{font-size:10px;letter-spacing:.12em;color:var(--mute);text-align:center;padding-bottom:6px;font-weight:700}
 .d{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;border:1px solid transparent}
@@ -224,10 +225,10 @@ footer .row a:hover{color:var(--or)}
  </div>
  <div class="track" id="track"><i></i><b style="left:0%"></b><b style="left:33.33%"></b><b style="left:66.66%"></b><b style="left:100%"></b></div>
  <div class="uses" id="usesgrid">
-  <div class="u"><a class="uph" href="https://instagram.com/the_collection_studios" target="_blank" rel="noopener" style="--c:#8e2a22;--img:url(assets/uses/photography.jpg)"><span><em>Story</em><em>View ↗</em></span></a><b>01</b><span class="t">Photography</span><p>Natural light most of the day. No backdrop paper needed.</p></div>
-  <div class="u"><a class="uph" href="https://instagram.com/the_collection_studios" target="_blank" rel="noopener" style="--c:#1f3f8f;--img:url(assets/uses/film.jpg)"><span><em>Story</em><em>View ↗</em></span></a><b>02</b><span class="t">Film</span><p>Three looks, one location. Change scenes without changing address.</p></div>
-  <div class="u"><a class="uph" href="https://instagram.com/the_collection_studios" target="_blank" rel="noopener" style="--c:#8a5a3a;--img:url(assets/uses/popups.jpg)"><span><em>Story</em><em>View ↗</em></span></a><b>03</b><span class="t">Pop-ups</span><p>The gallery already looks like a shop worth walking into.</p></div>
-  <div class="u"><a class="uph" href="https://instagram.com/the_collection_studios" target="_blank" rel="noopener" style="--c:#141414;--img:url(assets/uses/events.jpg)"><span><em>Story</em><em>View ↗</em></span></a><b>04</b><span class="t">Events</span><p>Launches, intimate dinners, small talks. It photographs well when guests post it.</p></div>
+  <div class="u"><a class="uph" href="https://instagram.com/the_collection_studios" target="_blank" rel="noopener" style="--c:#8e2a22;--img:url(assets/uses/photography.jpg)"><span><i>Story</i><i>View ↗︎</i></span></a><b>01</b><span class="t">Photography</span><p>Natural light most of the day. No backdrop paper needed.</p></div>
+  <div class="u"><a class="uph" href="https://instagram.com/the_collection_studios" target="_blank" rel="noopener" style="--c:#1f3f8f;--img:url(assets/uses/film.jpg)"><span><i>Story</i><i>View ↗︎</i></span></a><b>02</b><span class="t">Film</span><p>Three looks, one location. Change scenes without changing address.</p></div>
+  <div class="u"><a class="uph" href="https://instagram.com/the_collection_studios" target="_blank" rel="noopener" style="--c:#8a5a3a;--img:url(assets/uses/popups.jpg)"><span><i>Story</i><i>View ↗︎</i></span></a><b>03</b><span class="t">Pop-ups</span><p>The gallery already looks like a shop worth walking into.</p></div>
+  <div class="u"><a class="uph" href="https://instagram.com/the_collection_studios" target="_blank" rel="noopener" style="--c:#141414;--img:url(assets/uses/events.jpg)"><span><i>Story</i><i>View ↗︎</i></span></a><b>04</b><span class="t">Events</span><p>Launches, intimate dinners, small talks. It photographs well when guests post it.</p></div>
  </div>
 </div></div></div></section>
 
@@ -275,90 +276,11 @@ footer .row a:hover{color:var(--or)}
    <small id="leadmsg"></small>
   </div>
  </div>
- <div class="row"><span>The Collection Studios · Ara Damansara</span><a href="https://wa.me/60126576099" target="_blank" rel="noopener">WhatsApp ↗</a><a href="https://instagram.com/the_collection_studios" target="_blank" rel="noopener">Instagram ↗</a></div>
+ <div class="row"><span>The Collection Studios · Ara Damansara</span><a href="https://wa.me/60126576099" target="_blank" rel="noopener">WhatsApp ↗︎</a><a href="https://instagram.com/the_collection_studios" target="_blank" rel="noopener">Instagram ↗︎</a></div>
 </div></footer>
 
-<script type="importmap">{"imports":{"three":"./assets/vendor/three.module.js"}}</script>
-<script type="module">
-import * as THREE from 'three';
-const el=document.getElementById('scene'),lbl=document.getElementById('lbl');
-const R=new THREE.WebGLRenderer({antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));
-R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFSoftShadowMap;R.toneMapping=THREE.ACESFilmicToneMapping;R.outputColorSpace=THREE.SRGBColorSpace;
-el.appendChild(R.domElement);
-const S=new THREE.Scene();
-let cam=new THREE.OrthographicCamera(-1,1,1,-1,.1,100);
-const base=new THREE.Vector3(14,12,14);cam.position.copy(base);cam.lookAt(0,2.4,0);
-S.add(new THREE.HemisphereLight(0xfff4e6,0x8a7f72,1.1));
-const sun=new THREE.DirectionalLight(0xffd9a8,2.2);sun.position.set(8,14,6);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);
-Object.assign(sun.shadow.camera,{left:-10,right:10,top:10,bottom:-10});sun.shadow.radius=4;S.add(sun);
-const M=c=>new THREE.MeshStandardMaterial({color:c,roughness:.85});
-function box(w,h,d,c,x,y,z,p=S){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),M(c));m.position.set(x,y+h/2,z);m.castShadow=m.receiveShadow=true;p.add(m);return m}
-function cyl(r,h,c,x,y,z,p){const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,20),M(c));m.position.set(x,y+h/2,z);m.castShadow=true;p.add(m);return m}
-box(9.4,.5,6.4,0xd9d5ce,0,-.5,0);
-const rooms=[];
-function room(name,x,y,z,w,d,wall,floor){
- const g=new THREE.Group();g.position.set(x,y,z);S.add(g);
- box(w,.2,d,floor,0,0,0,g);
- const h=2.6;
- box(w,h,.2,wall,0,.2,-d/2+.1,g);
- box(.2,h,d,wall,-w/2+.1,.2,0,g);
- const glow=new THREE.Mesh(new THREE.BoxGeometry(w+.06,.06,d+.06),new THREE.MeshBasicMaterial({color:0xF2542D,transparent:true,opacity:0}));glow.position.y=.03;g.add(glow);
- rooms.push({g,name,glow,y}); return g}
-const gal=room('La Galerie',-2.2,0,0,4.6,6,0x8e2a22,0xcdb9a4);
-const hot=room("L'Hôtel",2.4,0,0,4.2,6,0xe9dcc6,0x1f3f8f);
-box(9,.3,6,0xd9d5ce,0,2.8,0);
-const mai=room('La Maison',0,3.1,0,9,6,0xf1e6d6,0x8a5a3a);
-[[-1.2,-2.85],[0.3,-2.85],[1.3,-2.85]].forEach(([x,z],i)=>{box(.8,.6,.05,0xc9a24a,x,1.3,z,gal);box(.68,.48,.06,[0x3d6fb3,0x7a8a5a,0xd8cfa8][i],x,1.36,z+.01,gal)});
-box(.05,.7,.9,0xc9a24a,-2.18,1.1,-.6,gal);
-[[-.8,0],[.6,.8]].forEach(([x,z])=>{box(.55,.9,.55,0x5f6670,x,.2,z,gal);const b=new THREE.Mesh(new THREE.SphereGeometry(.22,16,12),M(0xf2efe9));b.position.set(x,1.35,z);b.castShadow=true;gal.add(b)});
-cyl(.04,.8,0x222222,1.5,.2,1.8,gal);cyl(.04,.8,0x222222,-.2,.2,2.2,gal);
-const rope=box(1.8,.06,.06,0xe33b3b,.65,.88,2,gal);rope.rotation.y=-.24;
-box(1.8,.45,.7,0x9c4a3a,.2,.2,-2.2,hot);box(1.8,.4,.18,0x9c4a3a,.2,.65,-2.55,hot);
-cyl(.5,.05,0xcfd6da,.4,.75,-.8,hot);cyl(.04,.55,0x8b8b8b,.4,.2,-.8,hot);
-box(.18,.35,.18,0xe8c27a,.55,.8,-.8,hot);
-box(.05,.9,1.1,0xfff2c8,-2.02,1,.4,hot).material.emissive=new THREE.Color(0xffd27a);
-box(1.4,.04,1.4,0xc8b37a,1.1,.2,1.5,hot);
-box(1.6,1.3,.35,0x5a3322,-1,.2,-2.75,mai);box(.8,.6,.2,0x1a1a1a,-1,.3,-2.6,mai);
-const fire=new THREE.PointLight(0xff8a3d,2.5,3);fire.position.set(-1,.6,-2.3);mai.add(fire);
-box(1.1,1.4,.06,0x3a2a1c,-1,1.7,-2.86,mai);box(.95,1.25,.07,0xbcc6c9,-1,1.77,-2.85,mai);
-box(.85,.45,.85,0x1d1d1d,.6,.2,-1,mai);box(.85,.55,.18,0x1d1d1d,.6,.65,-1.35,mai);
-box(1.2,.03,.9,0xb8865a,-1.3,.2,.6,mai);
-box(.4,.5,.4,0x8e6a4a,2.4,.2,-2.4,mai);cyl(.12,.3,0xf3d9a0,2.4,.7,-2.4,mai).material.emissive=new THREE.Color(0x7a5a20);
-[[-3.5,-2.92],[2.8,-2.92]].forEach(([x,z])=>box(1,1.5,.05,0xfff1c6,x,.8,z,mai).material.emissive=new THREE.Color(0xffc870));
-box(.05,1.5,1,0xfff1c6,-4.42,.8,1.2,mai).material.emissive=new THREE.Color(0xffc870);
-cyl(.18,.35,0xb5653a,3.8,.2,1.8,mai);const leaf=new THREE.Mesh(new THREE.IcosahedronGeometry(.35,0),M(0x5c7a45));leaf.position.set(3.8,.85,1.8);leaf.castShadow=true;mai.add(leaf);
-box(3.2,.5,1.4,0xF2542D,3.2,-.5,3.9);
-// put everything except lights in one group so the intro can move it
-const world=new THREE.Group();[...S.children].forEach(c=>{if(!c.isLight)world.add(c)});S.add(world);
-// intro: building drops in floor by floor each time the hero comes back into view
-const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-let introStart=performance.now(),heroVisible=true;
-new IntersectionObserver(([e])=>{if(e.isIntersecting&&!heroVisible)introStart=performance.now();heroVisible=e.isIntersecting},{threshold:0}).observe(el);
-const ease=x=>1-Math.pow(1-Math.min(Math.max(x,0),1),3);
-const ray=new THREE.Raycaster(),mouse=new THREE.Vector2(-9,-9);let hov=-1,tgt={x:0,y:0};
-function size(){const w=el.clientWidth,h=el.clientHeight,a=w/h,f=Math.max(6.2,7.4/a);cam.left=-f*a;cam.right=f*a;cam.top=f;cam.bottom=-f;cam.updateProjectionMatrix();R.setSize(w,h)}
-size();addEventListener('resize',size);
-el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();mouse.x=(e.clientX-r.left)/r.width*2-1;mouse.y=-(e.clientY-r.top)/r.height*2+1;tgt.x=mouse.x;tgt.y=mouse.y;lbl.style.left=(e.clientX-r.left+16)+'px';lbl.style.top=(e.clientY-r.top+16)+'px'});
-el.addEventListener('pointerleave',()=>{mouse.set(-9,-9);tgt={x:0,y:0}});
-const order={"La Maison":0,"La Galerie":1,"L'Hôtel":2};
-el.addEventListener('click',()=>{if(hov<0)return;const i=order[rooms[hov].name];document.querySelectorAll('.sp').forEach((s,j)=>s.classList.toggle('on',j===i));document.getElementById('spaces').scrollIntoView({behavior:'smooth'})});
-function owner(o){while(o){const i=rooms.findIndex(r=>r.g===o);if(i>-1)return i;o=o.parent}return -1}
-(function loop(){requestAnimationFrame(loop);
- if(!heroVisible)return;
- const t=performance.now()/1000,it=reduce?9:(performance.now()-introStart)/1000;
- const e0=ease(it/1.2);
- world.rotation.y=-.5*(1-e0);world.position.y=-1.5*(1-e0);
- cam.position.set(base.x+tgt.x*2.2,base.y+tgt.y*1.2,base.z-tgt.x*2.2);cam.lookAt(0,2.4,0);
- fire.intensity=2.2+Math.sin(t*9)*.3+Math.sin(t*5.3)*.2;
- ray.setFromCamera(mouse,cam);const hit=ray.intersectObjects(rooms.map(r=>r.g),true)[0];hov=hit?owner(hit.object):-1;
- rooms.forEach((r,i)=>{
-  r.glow.material.opacity+=((i===hov?1:0)-r.glow.material.opacity)*.15;
-  const drop=(1-ease((it-.15-i*.18)/.9))*6; // each room falls into place in turn
-  const want=r.y+(i===hov?.12:0)+drop;
-  r.g.position.y=drop>0.001?want:r.g.position.y+(want-r.g.position.y)*.12});
- if(hov>-1){lbl.textContent=rooms[hov].name+'  →';lbl.style.opacity=1}else{lbl.style.opacity=0}
- R.render(S,cam)})();
-</script>
+<script type="importmap">{"imports":{"three":"./assets/vendor/three.module.js","three/addons/":"./assets/vendor/addons/"}}</script>
+<script type="module" src="assets/hero.js"></script>
 <script>
 // Section reveals: add .in on enter, remove on full exit so the animation replays next time.
 const io=new IntersectionObserver(es=>es.forEach(e=>{

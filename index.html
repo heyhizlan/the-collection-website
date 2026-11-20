@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Collection Studios | Ara Damansara</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ECEAE6;--ink:#141414;--mute:#6B6863;--or:#F2542D;--line:#141414}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Inter Tight',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1320px;margin:0 auto;padding:0 32px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+nav .links{display:flex;gap:40px}
+.dot{display:inline-block;width:6px;height:6px;background:var(--or);border-radius:50%;margin-left:6px}
+.hero{display:grid;grid-template-columns:5fr 7fr;min-height:86vh;position:relative}
+.hero h1{font-size:clamp(72px,10vw,150px);font-weight:800;letter-spacing:-.05em;line-height:.9;margin-top:60px}
+.hero h1 em{font-family:'Instrument Serif';font-weight:400;font-style:italic;letter-spacing:-.02em}
+.tag{display:flex;gap:28px;margin-top:48px;align-items:flex-start}
+.num{writing-mode:vertical-rl;transform:rotate(180deg);font-weight:800;font-size:44px;letter-spacing:-.04em}
+.tag h2{font-size:26px;line-height:1.15;font-weight:600;max-width:360px}
+.rule{width:48px;height:2px;background:var(--or);margin:22px 0}
+.tag p{color:var(--mute);font-size:14px;line-height:1.6;max-width:330px}
+.side{position:absolute;right:0;top:40px;writing-mode:vertical-rl;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;border-left:2px solid var(--ink);padding-left:8px}
+#scene{position:relative;height:100%;min-height:620px}
+#scene canvas{display:block;cursor:pointer}
+.label{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;font-weight:600;opacity:0;transition:opacity .2s;white-space:nowrap}
+.cta{position:absolute;left:0;bottom:48px;display:flex;gap:0;border:1.5px solid var(--line)}
+.cta a{padding:16px 22px;font-size:13px;font-weight:600}
+.cta a.go{background:var(--ink);color:#fff}
+.orb{background:var(--or);color:#fff}
+section{padding:120px 0;border-top:1.5px solid var(--line)}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--mute);margin-bottom:20px}
+.h{font-size:clamp(40px,5vw,72px);font-weight:800;letter-spacing:-.04em;line-height:.95;max-width:900px}
+.h em{font-family:'Instrument Serif';font-weight:400;font-style:italic}
+.spaces{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:72px;border:1.5px solid var(--line)}
+.sp{padding:28px;border-right:1.5px solid var(--line);transition:background .25s}
+.sp:last-child{border-right:0}
+.sp:hover,.sp.on{background:var(--or);color:#fff}
+.sp .ph{aspect-ratio:4/5;background:#d6d2cb;margin-bottom:24px;display:flex;align-items:flex-end;padding:14px;font-size:11px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase}
+.sp .k{font-size:11px;letter-spacing:.14em;font-weight:700}
+.sp h3{font-family:'Instrument Serif';font-weight:400;font-size:44px;margin:8px 0 12px}
+.sp p{font-size:14px;line-height:1.6;opacity:.85}
+.sp ul{list-style:none;margin-top:18px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.sp li{padding:8px 0;border-top:1px solid currentColor;opacity:.9}
+.uses{display:grid;grid-template-columns:repeat(4,1fr);margin-top:64px;border-top:1.5px solid var(--line)}
+.u{padding:28px 24px 0 0}
+.u b{font-size:44px;font-weight:800;letter-spacing:-.04em;display:block}
+.u span{font-size:15px;font-weight:600;display:block;margin:10px 0 8px}
+.u p{font-size:14px;color:var(--mute);line-height:1.6}
+.book{display:grid;grid-template-columns:5fr 7fr;gap:64px;margin-top:64px}
+.steps li{list-style:none;padding:18px 0;border-top:1.5px solid var(--line);display:flex;gap:20px;font-size:15px}
+.steps li b{color:var(--or)}
+.picker{display:flex;gap:0;border:1.5px solid var(--line);margin:28px 0 0}
+.picker button{flex:1;padding:14px;background:none;border:0;border-right:1.5px solid var(--line);font:600 13px 'Inter Tight';cursor:pointer}
+.picker button:last-child{border-right:0}
+.picker button.on{background:var(--ink);color:#fff}
+.cal{border:1.5px solid var(--line);padding:28px;background:#F5F3F0}
+.calh{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;font-weight:700}
+.calh button{background:none;border:1.5px solid var(--line);width:36px;height:36px;cursor:pointer;font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.grid .dn{font-size:10px;letter-spacing:.12em;color:var(--mute);text-align:center;padding-bottom:6px;font-weight:700}
+.d{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;border:1px solid transparent}
+.d.free{background:#fff;border-color:#cfcac2;cursor:pointer}
+.d.free:hover{border-color:var(--ink)}
+.d.taken{color:#bbb;text-decoration:line-through}
+.d.sel{background:var(--or);color:#fff;border-color:var(--or)}
+.legend{display:flex;gap:20px;font-size:12px;color:var(--mute);margin-top:18px}
+.legend i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:middle;border:1px solid #cfcac2;background:#fff}
+.wa{display:flex;justify-content:space-between;align-items:center;margin-top:24px;background:var(--ink);color:#fff;padding:20px 24px;font-weight:600;font-size:15px}
+.wa.off{opacity:.35;pointer-events:none}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:0 64px;margin-top:56px}
+.faq div{padding:24px 0;border-top:1.5px solid var(--line)}
+.faq h4{font-size:16px;margin-bottom:8px}
+.faq p{color:var(--mute);font-size:14px;line-height:1.6}
+footer{background:var(--ink);color:#fff;padding:80px 0 32px}
+footer .big{font-size:clamp(56px,9vw,140px);font-weight:800;letter-spacing:-.05em;line-height:.9}
+footer .row{display:flex;justify-content:space-between;margin-top:80px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#999}
+@media(max-width:900px){.hero,.book{grid-template-columns:1fr}.spaces,.uses,.faq{grid-template-columns:1fr}.sp{border-right:0;border-bottom:1.5px solid var(--line)}nav .links{display:none}.side{display:none}#scene{min-height:440px}.cta{position:static;margin:24px 0}}
+</style></head><body>
+<div class="wrap">
+<nav><a href="#">The Collection</a><div class="links"><a href="#spaces">Spaces</a><a href="#uses">Use</a><a href="#book">Availability<span class="dot"></span></a><a href="#faq">FAQ</a></div><a href="https://wa.me/60126576099">WhatsApp</a></nav>
+
+<header class="hero">
+ <div>
+  <h1>the<br><em>collection.</em></h1>
+  <div class="tag"><div class="num">003</div><div>
+   <h2>Three rooms in Ara Damansara. Already dressed, already lit.</h2>
+   <div class="rule"></div>
+   <p>A home, a gallery and a hotel under one roof. You bring the camera, the crew or the crowd. We bring the set.</p>
+  </div></div>
+  <div class="cta"><a href="#spaces">See the rooms</a><a class="go" href="#book">Check a date &nbsp;→</a></div>
+ </div>
+ <div id="scene"><div class="label" id="lbl"></div></div>
+ <div class="side">Curated spaces · Est. Ara Damansara</div>
+</header>
+</div>
+
+<section id="spaces"><div class="wrap">
+ <div class="eyebrow">01 / The rooms</div>
+ <h2 class="h">Pick a room. <em>Skip the set build.</em></h2>
+ <div class="spaces">
+  <div class="sp" data-room="0"><div class="ph">Photo: fireplace + armchair</div><div class="k">01 · LA MAISON</div><h3>La Maison</h3><p>A lived-in home with a marble fireplace, a black leather lounge chair and afternoon sun through tall windows.</p><ul><li>Lifestyle and portraits</li><li>Slow brand films</li><li>Interviews</li></ul></div>
+  <div class="sp" data-room="1"><div class="ph">Photo: red wall + frames</div><div class="k">02 · LA GALERIE</div><h3>La Galerie</h3><p>Oxblood walls, gilt frames, plaster busts and a velvet rope. A private museum you are allowed to touch.</p><ul><li>Editorial and fashion</li><li>Art pop-ups</li><li>Launch nights</li></ul></div>
+  <div class="sp" data-room="2"><div class="ph">Photo: blue carpet lounge</div><div class="k">03 · L'HÔTEL</div><h3>L'Hôtel</h3><p>A red-ceilinged corridor, a cobalt carpet lounge and a tatami room. Somewhere between Tokyo and a 70s grand hotel.</p><ul><li>Music videos</li><li>Campaign shoots</li><li>Short film scenes</li></ul></div>
+ </div>
+ <p style="margin-top:20px;font-size:13px;color:var(--mute)">The rooms get restyled through the year. What you see on Instagram is what's up now.</p>
+</div></section>
+
+<section id="uses"><div class="wrap">
+ <div class="eyebrow">02 / What people book it for</div>
+ <h2 class="h">Four reasons people book it.</h2>
+ <div class="uses">
+  <div class="u"><b>01</b><span>Photography</span><p>Natural light most of the day. No backdrop paper needed.</p></div>
+  <div class="u"><b>02</b><span>Film</span><p>Three looks, one location. Change scenes without changing address.</p></div>
+  <div class="u"><b>03</b><span>Pop-ups</span><p>The gallery already looks like a shop worth walking into.</p></div>
+  <div class="u"><b>04</b><span>Events</span><p>Launches, intimate dinners, small talks. It photographs well when guests post it.</p></div>
+ </div>
+</div></section>
+
+<section id="book"><div class="wrap">
+ <div class="eyebrow">03 / Availability</div>
+ <h2 class="h">Find a free day. <em>Message us.</em> Done.</h2>
+ <div class="book">
+  <div>
+   <ol class="steps"><li><b>01</b>Choose a room</li><li><b>02</b>Tap an open date</li><li><b>03</b>WhatsApp opens with your request ready</li><li><b>04</b>We confirm time and rate with you directly</li></ol>
+   <div class="picker" id="picker"><button class="on" data-r="La Maison">Maison</button><button data-r="La Galerie">Galerie</button><button data-r="L'Hôtel">Hôtel</button><button data-r="the whole studio">All</button></div>
+  </div>
+  <div class="cal">
+   <div class="calh"><button id="prev">←</button><span id="mon"></span><button id="next">→</button></div>
+   <div class="grid" id="grid"></div>
+   <div class="legend"><span><i></i>Open</span><span><i style="background:none;border:0;text-decoration:line-through">–</i>Booked</span><span><i style="background:var(--or);border-color:var(--or)"></i>Your pick</span></div>
+   <a class="wa off" id="wa" target="_blank"><span id="watxt">Pick a date first</span><span>→</span></a>
+  </div>
+ </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+ <div class="eyebrow">04 / Before you come</div>
+ <h2 class="h">Before you come.</h2>
+ <div class="faq">
+  <div><h4>Where exactly?</h4><p>Ara Damansara, Petaling Jaya. Full address and parking details are sent once your date is confirmed.</p></div>
+  <div><h4>Can we move the furniture?</h4><p>Yes, within reason. Put things back the way you found them.</p></div>
+  <div><h4>How do rates work?</h4><p>By the hour or by the day, depending on the room and crew size. Ask on WhatsApp and we'll quote you straight.</p></div>
+  <div><h4>Can I book more than one room?</h4><p>Yes. Pick "All" in the calendar and tell us which rooms you need.</p></div>
+ </div>
+</div></section>
+
+<footer><div class="wrap">
+ <div class="big">Bring the camera.<br>The room's ready.</div>
+ <div class="row"><span>The Collection Studios · Ara Damansara</span><a href="https://wa.me/60126576099">WhatsApp ↗</a><a href="https://instagram.com/the_collection_studios">Instagram ↗</a></div>
+</div></footer>
+
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+const el=document.getElementById('scene'),lbl=document.getElementById('lbl');
+const R=new THREE.WebGLRenderer({antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));
+R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFSoftShadowMap;R.toneMapping=THREE.ACESFilmicToneMapping;R.outputColorSpace=THREE.SRGBColorSpace;
+el.appendChild(R.domElement);
+const S=new THREE.Scene();
+let cam=new THREE.OrthographicCamera(-1,1,1,-1,.1,100);
+const base=new THREE.Vector3(14,12,14);cam.position.copy(base);cam.lookAt(0,2.4,0);
+S.add(new THREE.HemisphereLight(0xfff4e6,0x8a7f72,1.1));
+const sun=new THREE.DirectionalLight(0xffd9a8,2.2);sun.position.set(8,14,6);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);
+Object.assign(sun.shadow.camera,{left:-10,right:10,top:10,bottom:-10});sun.shadow.radius=4;S.add(sun);
+const M=c=>new THREE.MeshStandardMaterial({color:c,roughness:.85});
+function box(w,h,d,c,x,y,z,p=S){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),M(c));m.position.set(x,y+h/2,z);m.castShadow=m.receiveShadow=true;p.add(m);return m}
+function cyl(r,h,c,x,y,z,p){const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,20),M(c));m.position.set(x,y+h/2,z);m.castShadow=true;p.add(m);return m}
+// plinth
+box(9.4,.5,6.4,0xd9d5ce,0,-.5,0);
+const rooms=[];
+function room(name,x,y,z,w,d,wall,floor){
+ const g=new THREE.Group();g.position.set(x,y,z);S.add(g);
+ box(w,.2,d,floor,0,0,0,g);
+ const h=2.6;
+ box(w,h,.2,wall,0,.2,-d/2+.1,g); // back
+ box(.2,h,d,wall,-w/2+.1,.2,0,g); // left
+ const glow=new THREE.Mesh(new THREE.BoxGeometry(w+.06,.06,d+.06),new THREE.MeshBasicMaterial({color:0xF2542D,transparent:true,opacity:0}));glow.position.y=.03;g.add(glow);
+ rooms.push({g,name,glow});return g}
+// Ground: La Galerie (left), L'Hotel (right). Upper: La Maison
+const gal=room('La Galerie',-2.2,0,0,4.6,6,0x8e2a22,0xcdb9a4);
+const hot=room("L'Hôtel",2.4,0,0,4.2,6,0xe9dcc6,0x1f3f8f);
+box(9,.3,6,0xd9d5ce,0,2.8,0); // slab
+const mai=room('La Maison',0,3.1,0,9,6,0xf1e6d6,0x8a5a3a);
+box(9.2,.25,6.2,0xe2ded7,0,6.3,0).position.x=0; // roof hint offset
+S.children[S.children.length-1].visible=false;
+// Galerie props
+[[-1.2,-2.85],[0.3,-2.85],[1.3,-2.85]].forEach(([x,z],i)=>{box(.8,.6,.05,0xc9a24a,x,1.3,z,gal);box(.68,.48,.06,[0x3d6fb3,0x7a8a5a,0xd8cfa8][i],x,1.36,z+.01,gal)});
+box(.05,.7,.9,0xc9a24a,-2.18,1.1,-.6,gal);
+[[-.8,0],[.6,.8]].forEach(([x,z])=>{box(.55,.9,.55,0x5f6670,x,.2,z,gal);const b=new THREE.Mesh(new THREE.SphereGeometry(.22,16,12),M(0xf2efe9));b.position.set(x,1.35,z);b.castShadow=true;gal.add(b)});
+cyl(.04,.8,0x222222,1.5,.2,1.8,gal);cyl(.04,.8,0x222222,-.2,.2,2.2,gal);
+const rope=box(1.8,.06,.06,0xe33b3b,.65,.88,2,gal);rope.rotation.y=-.24;
+// Hotel props
+box(1.8,.45,.7,0x9c4a3a,.2,.2,-2.2,hot);box(1.8,.4,.18,0x9c4a3a,.2,.65,-2.55,hot);
+const tbl=cyl(.5,.05,0xcfd6da,.4,.75,-.8,hot);cyl(.04,.55,0x8b8b8b,.4,.2,-.8,hot);
+box(.18,.35,.18,0xe8c27a,.55,.8,-.8,hot);
+box(.05,.9,1.1,0xfff2c8,-2.02,1,.4,hot).material.emissive=new THREE.Color(0xffd27a);
+box(1.4,.04,1.4,0xc8b37a,1.1,.2,1.5,hot);
+// Maison props
+box(1.6,1.3,.35,0x5a3322,-1,.2,-2.75,mai);box(.8,.6,.2,0x1a1a1a,-1,.3,-2.6,mai);
+const fire=new THREE.PointLight(0xff8a3d,2.5,3);fire.position.set(-1,.6,-2.3);mai.add(fire);
+box(1.1,1.4,.06,0x3a2a1c,-1,1.7,-2.86,mai);box(.95,1.25,.07,0xbcc6c9,-1,1.77,-2.85,mai);
+box(.85,.45,.85,0x1d1d1d,.6,.2,-1,mai);box(.85,.55,.18,0x1d1d1d,.6,.65,-1.35,mai);
+box(1.2,.03,.9,0xb8865a,-1.3,.2,.6,mai);
+box(.4,.5,.4,0x8e6a4a,2.4,.2,-2.4,mai);cyl(.12,.3,0xf3d9a0,2.4,.7,-2.4,mai).material.emissive=new THREE.Color(0x7a5a20);
+[[-3.5,-2.92],[2.8,-2.92]].forEach(([x,z])=>box(1,1.5,.05,0xfff1c6,x,.8,z,mai).material.emissive=new THREE.Color(0xffc870));
+box(.05,1.5,1,0xfff1c6,-4.42,.8,1.2,mai).material.emissive=new THREE.Color(0xffc870);
+const pot=cyl(.18,.35,0xb5653a,3.8,.2,1.8,mai);const leaf=new THREE.Mesh(new THREE.IcosahedronGeometry(.35,0),M(0x5c7a45));leaf.position.set(3.8,.85,1.8);leaf.castShadow=true;mai.add(leaf);
+// orange accent block
+box(3.2,.5,1.4,0xF2542D,3.2,-.5,3.9);
+// interaction
+const ray=new THREE.Raycaster(),mouse=new THREE.Vector2(-9,-9);let hov=-1,tgt={x:0,y:0};
+function size(){const w=el.clientWidth,h=el.clientHeight,a=w/h,f=6.2;cam.left=-f*a;cam.right=f*a;cam.top=f;cam.bottom=-f;cam.updateProjectionMatrix();R.setSize(w,h)}
+size();addEventListener('resize',size);
+el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();mouse.x=(e.clientX-r.left)/r.width*2-1;mouse.y=-(e.clientY-r.top)/r.height*2+1;tgt.x=mouse.x;tgt.y=mouse.y;lbl.style.left=(e.clientX-r.left+16)+'px';lbl.style.top=(e.clientY-r.top+16)+'px'});
+el.addEventListener('pointerleave',()=>{mouse.set(-9,-9);tgt={x:0,y:0}});
+const order={"La Maison":0,"La Galerie":1,"L'Hôtel":2};
+el.addEventListener('click',()=>{if(hov<0)return;const i=order[rooms[hov].name];document.querySelectorAll('.sp').forEach((s,j)=>s.classList.toggle('on',j===i));document.getElementById('spaces').scrollIntoView({behavior:'smooth'})});
+function owner(o){while(o){const i=rooms.findIndex(r=>r.g===o);if(i>-1)return i;o=o.parent}return -1}
+(function loop(){requestAnimationFrame(loop);
+ const t=performance.now()/1000;
+ cam.position.set(base.x+tgt.x*2.2,base.y+tgt.y*1.2,base.z-tgt.x*2.2);cam.lookAt(0,2.4,0);
+ fire.intensity=2.2+Math.sin(t*9)*.3+Math.sin(t*5.3)*.2;
+ ray.setFromCamera(mouse,cam);const hit=ray.intersectObjects(rooms.map(r=>r.g),true)[0];hov=hit?owner(hit.object):-1;
+ rooms.forEach((r,i)=>{r.glow.material.opacity+=((i===hov?1:0)-r.glow.material.opacity)*.15;r.g.position.y+=(((i===hov?.12:0)+(r.name==='La Maison'?3.1:0))-r.g.position.y)*.12});
+ if(hov>-1){lbl.textContent=rooms[hov].name+'  →';lbl.style.opacity=1;el.style.cursor='pointer'}else{lbl.style.opacity=0}
+ R.render(S,cam)})();
+</script>
+<script>
+// Availability: Dean edits this list. Format YYYY-MM-DD.
+const BOOKED=['2026-11-22','2026-11-23','2026-11-28','2026-12-05','2026-12-06','2026-12-13','2026-12-24','2026-12-25'];
+const PHONE='60126576099';
+let view=new Date(),room='La Maison',pick=null;view.setDate(1);
+const grid=document.getElementById('grid'),mon=document.getElementById('mon'),wa=document.getElementById('wa'),wat=document.getElementById('watxt');
+const f=d=>d.toISOString().slice(0,10);
+function draw(){grid.innerHTML='';['M','T','W','T','F','S','S'].forEach(d=>grid.insertAdjacentHTML('beforeend',`<div class="dn">${d}</div>`));
+ mon.textContent=view.toLocaleString('en-GB',{month:'long',year:'numeric'});
+ const y=view.getFullYear(),m=view.getMonth(),off=(new Date(y,m,1).getDay()+6)%7,n=new Date(y,m+1,0).getDate(),today=new Date();today.setHours(0,0,0,0);
+ for(let i=0;i<off;i++)grid.insertAdjacentHTML('beforeend','<div></div>');
+ for(let d=1;d<=n;d++){const dt=new Date(Date.UTC(y,m,d)),k=f(dt),past=new Date(y,m,d)<today,b=BOOKED.includes(k);
+  const c=document.createElement('div');c.className='d '+(past?'':b?'taken':'free')+(pick===k?' sel':'');c.textContent=d;
+  if(!past&&!b)c.onclick=()=>{pick=k;draw();upd()};grid.appendChild(c)}}
+function upd(){if(!pick)return;const nice=new Date(pick).toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+ wa.classList.remove('off');wat.textContent=`Request ${room} on ${nice}`;
+ wa.href=`https://wa.me/${PHONE}?text=${encodeURIComponent(`Hi The Collection Studios, I'd like to book ${room} on ${nice}. What times are open?`)}`}
+document.getElementById('prev').onclick=()=>{view.setMonth(view.getMonth()-1);draw()};
+document.getElementById('next').onclick=()=>{view.setMonth(view.getMonth()+1);draw()};
+document.querySelectorAll('#picker button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#picker button').forEach(x=>x.classList.remove('on'));b.classList.add('on');room=b.dataset.r;upd()});
+draw();
+</script></body></html>
